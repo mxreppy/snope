@@ -7,7 +7,7 @@ var wsdl_url = 'http://www.webservicex.net/uszip.asmx?WSDL';
 
 var util = require('util');
 
-var args = {USZip: 01002};
+var args = {USZip: "01002"};
 
 soap.createClient(wsdl_url, function(err, client) {
     if( err ) {
@@ -32,10 +32,15 @@ soap.createClient(wsdl_url, function(err, client) {
             } else {
                 console.log("got zip result");
                 console.log( util.inspect( result, {maxDepth:4} ) );
+
                 console.log("got soap header");
                 console.log( util.inspect( soapHeader, {maxDepth:4} ) );
                 console.log("raw");
                 console.log( util.inspect( raw, {maxDepth:4} ) );
+
+                var thingy = result.GetInfoByZIPResult.NewDataSet.Table;
+
+                console.log ('table:  ' + util.inspect( thingy ));
             }
         } );
     }
