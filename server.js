@@ -1,8 +1,6 @@
 /**
  * Created by mikey on 2/3/15.
  */
-
-
 var soap = require('soap');
 
 var wsdl_url = 'http://www.webservicex.net/uszip.asmx?WSDL';
