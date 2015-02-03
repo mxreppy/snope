@@ -1,2 +1,2 @@
 # snope
-nodes soap testing repo
+node.js soap testing repo
