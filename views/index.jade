@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  p routes:
+    b  /zipdata
+    |  wraps a soap call to
+    b  http://www.webservicex.net/uszip.asmx?WSDL
+    |  using the USZip service -> USZipSoap port -> GetInfoByZIP operation
+  p for example input (POST)
+  pre { 'zip':'19143' }
+  p or GET
+    tt  http://server.tld/zipdata?zip=19143
+  p returns
+  pre.
+    {
+      "AREA_CODE": "215",
+      "CITY": "Philadelphia",
+      "STATE": "PA",
+      "TIME_ZONE": "E",
+      "ZIP": "19143"
+    }
+
+  p this is only a test
