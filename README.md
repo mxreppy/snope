@@ -1,13 +1,36 @@
 # snope
-node.js soap testing repo
+node.js soap testing repo: [public github](https://github.com/mxreppy/snope)
 
 # soap resources (free web services)
-http://www.actionscript.org/forums/showthread.php3?t=70742
+
+[actionscript.org](http://www.actionscript.org/forums/showthread.php3?t=70742)  This link is currently down, but 
+here's a google cache:
+
+
+[http://webcache.googleusercontent.com/...](http://webcache.googleusercontent.com/search?q=cache:mXmVn6osczcJ:www.actionscript.org/forums/printthread.php3%3Ft%3D70742%26pp%3D40+&cd=1&hl=en&ct=clnk&gl=us)
 
 # nodejs soap library
-https://github.com/vpulim/node-soap
 
-# spike
+Github:[node-soap](https://github.com/vpulim/node-soap)
+npm: [soap](https://www.npmjs.com/package/soap)
+
+
+note that the npm page appears to point at a different repo, but that link redirects to the vpulim based one which appears to be the current maintainer (and that repo has lots of recent activity).   Both docs reflect the same basic api so it's just the natural progression of open source software...
+
+# TL;DR: simple web server with express
+
+see below for the description of the soap service wrapped
+
+* from [express generator](http://expressjs.com/starter/generator.html)
+* implement get & post to `/zipdata` wrapping the soap call, using param/query `zip=<zipcode>`
+* brief home page on `\` with instructions
+* instructions to run on localhost
+
+    1.  `npm install .`   # install deps
+    2.  `./bin/www`    # excecutable server script provided by express generator
+
+
+# development spike
 
 Wrap a sample SOAP call with an http endpoint to make use easier by other clients
 
@@ -50,8 +73,7 @@ where the object looks like
 so an appropriate http wrapper would be a `GET` (or `POST`) with input zipcode and a json response of the result object.
 
 
-
-
+# reference
 
 The whole wsdl for reference:
 ```
