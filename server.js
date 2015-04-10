@@ -9,6 +9,31 @@ var util = require('util');
 
 var args = {USZip: "01002"};
 
+var _client = null;
+
+var get_zipdata_soap = function( zipcode, callback ){
+
+    _client.GetInfoByZIP(
+        // args for the soap call
+        {
+            USZip: zipcode
+    },
+        // callback to handle soap result
+        function( zip_err, result, raw, soapHeader) {
+            if( zip_err) {
+                console.error("Zip Error");
+                console.error(zip_err);
+
+                return callback(zip_err);
+            }
+            // happy path
+            var zipdata = result.GetInfoByZIPResult.NewDataSet.Table;
+
+            // return
+            callback(null, zipdata);
+    } );
+};
+
 soap.createClient(wsdl_url, function(err, client) {
     if( err ) {
         console.error(err);
@@ -17,8 +42,10 @@ soap.createClient(wsdl_url, function(err, client) {
     } else {
         console.log("got client");
 
+        _client = client;
+
         //console.log(util.inspect(client, {maxDepth:1}));
-        console.log( client.describe());
+        //console.log( client.describe());
 
         console.log('now what? -- calling GetInfoByZIP ');
 
@@ -41,10 +68,21 @@ soap.createClient(wsdl_url, function(err, client) {
                 var thingy = result.GetInfoByZIPResult.NewDataSet.Table;
 
                 console.log ('table:  ' + util.inspect( thingy ));
+
+
+                // test call function
+                console.log( 'calling wrapper function');
+                get_zipdata_soap('19143', function( e, data) {
+                    console.log( "test callback starting");
+                    if( e ) throw e;
+
+                    console.log('test callback data: ')
+                    console.log(JSON.stringify(data))
+
+                    console.log('goodbye');
+                } );
             }
         } );
     }
-    //client.MyFunction(args, function(err, result) {
-    //    console.log(result);
-    //});
+
 });
