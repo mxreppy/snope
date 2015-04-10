@@ -24,10 +24,36 @@ see below for the description of the soap service wrapped
 * from [express generator](http://expressjs.com/starter/generator.html)
 * implement get & post to `/zipdata` wrapping the soap call, using param/query `zip=<zipcode>`
 * brief home page on `\` with instructions
-* instructions to run on localhost
+* instructions to run on localhost (port 3000 by default)
 
     1.  `npm install .`   # install deps
     2.  `./bin/www`    # excecutable server script provided by express generator
+
+* curl get example:
+
+```
+$ curl -s http://localhost:3000/zipdata?zip=01002 | jq "."
+{
+  "CITY": "Amherst",
+  "STATE": "MA",
+  "ZIP": "01002",
+  "AREA_CODE": "413",
+  "TIME_ZONE": "E"
+}
+```
+
+* curl post example:
+
+```
+$ curl -s 'http://localhost:3000/zipdata'    -H'Content-Type: application/json'    -H'Accept: text/html,application/json'    --data '{"zip":"01002"}' | jq "."
+{
+  "CITY": "Amherst",
+  "STATE": "MA",
+  "ZIP": "01002",
+  "AREA_CODE": "413",
+  "TIME_ZONE": "E"
+}
+```
 
 
 # development spike
